@@ -26,7 +26,7 @@ class ProductsController < ApplicationController
 		@products = Product.all
 		params[:export].each do|key, val|
 			@products = @products.public_send(key, val[:value]) if val[:validate].to_i == 1
-		end
+		end if params.has_key?(:export)
 		@products = @products[0..24]
 		book = Spreadsheet::Workbook.new 
 		sheet1 = book.create_worksheet :name => "Products"
