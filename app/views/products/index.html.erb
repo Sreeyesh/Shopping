@@ -1,0 +1,52 @@
+
+
+
+
+<div class="container" style="margin-top: 10px">
+	<h3>Filter</h3>
+	<%= form_tag(filter_path(), class: 'form-horizontal', remote: true) do -%>
+	<div class="row mb-1">
+		<div class="col-lg-6 col-md-4"><%= check_box("filter[brand]", "validate")%> Brand </div>
+		<div class="col-lg-6 col-md-8">
+		<%= select_tag "filter[brand][value]", options_for_select(Product.distinct.pluck(:brand)), { :class => 'filter' } %>
+		</div>
+	</div>
+	<div class="row mb-1">
+		<div class="col-lg-6 col-md-4"><%= check_box("filter[ram]", "validate")%> RAM </div>
+		<div class="col-lg-6 col-md-8">
+		<%= select_tag "filter[ram][value]", options_for_select(Product.distinct.pluck(:ram)), { :class => 'filter' } %>
+		</div>
+	</div>
+	<div class="row mb-1">
+		<div class="col-lg-6 col-md-4"><%= check_box("filter[external]", "validate")%> External </div>
+		<div class="col-lg-6 col-md-8">
+		<%= select_tag "filter[external][value]", options_for_select(Product.distinct.pluck(:external)), { :class => 'filter' } %>
+		</div>
+	</div>
+	<div class="row mb-1">
+		<div class="col-lg-6 col-md-4"><%= check_box("filter[year]", "validate")%> Year </div>
+		<div class="col-lg-6 col-md-8">
+		<%= select_tag "filter[year][value]", options_for_select(Product.distinct.pluck(:year)), { :class => 'filter' } %>
+		</div>
+	</div>
+	<div class="form-group"> 
+		<div class="col-sm-offset-2 col-sm-10 pl-0">
+		  <%= button_tag "Apply", class: 'btn btn-default' %>
+		</div>
+	</div>
+	<% end %>
+	
+	<div id="product-list">
+		<%= render "products/product_list" %>
+	</div>
+</div>
+
+
+<style type="text/css">
+	select.filter{
+		width:50%;
+	}
+	a.fl-right{
+		float: right;
+	}
+</style>

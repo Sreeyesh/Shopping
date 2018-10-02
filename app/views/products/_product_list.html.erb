@@ -1,0 +1,32 @@
+<h3>Products</h3> 
+<%= link_to "Export","#", onclick: "$('#export_form').submit(); return false;", class: 'fl-right' %>
+<%= form_tag(export_path(), method: :get, id: 'export_form') do -%>
+  <%= build_hidden_filter(@filter) %>
+<% end %>
+
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">S.No</th>
+      <th scope="col">Name</th>
+      <th scope="col">Model</th>
+      <th scope="col">Brand</th>
+      <th scope="col">RAM</th>
+      <th scope="col">External</th>
+      <th scope="col">Year</th>
+    </tr>
+  </thead>
+  <tbody>
+  	<% @products.each_with_index do |pr,idx| %>
+		<tr>
+			<th scope="row"><%= idx + 1 %></th>
+			<td><%= pr.name %></td>
+			<td><%= pr.model %></td>
+			<td><%= pr.brand %></td>
+			<td><%= pr.ram %></td>
+			<td><%= pr.external %></td>
+			<td><%= pr.year %></td>
+		</tr>
+	<% end %>
+  </tbody>
+</table>
