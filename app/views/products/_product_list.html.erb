@@ -1,5 +1,6 @@
+<hr>
+<%= link_to "Export","#", onclick: "$('#export_form').submit(); return false;", class: 'btn btn-primary btn-sm float-right mb-2' %>
 <h3>Products</h3> 
-<%= link_to "Export","#", onclick: "$('#export_form').submit(); return false;", class: 'fl-right' %>
 <%= form_tag(export_path(), method: :get, id: 'export_form') do -%>
   <%= build_hidden_filter(@filter) %>
 <% end %>
@@ -30,3 +31,10 @@
 	<% end %>
   </tbody>
 </table>
+
+
+<style type="text/css">
+  td, th {
+    word-break:break-all;
+  }
+</style>
